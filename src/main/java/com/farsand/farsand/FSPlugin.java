@@ -7,7 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event.Type;
 
-public class Plugin extends JavaPlugin {
+public class FSPlugin extends JavaPlugin {
     public String ver = "b1.3";
     
     @Override
@@ -19,7 +19,7 @@ public class Plugin extends JavaPlugin {
     public void onEnable() {
     	PluginManager pm = getServer().getPluginManager();
 
-    	PlayerListener playerListener = new PlayerListener(this);
+    	FSPlayerListener playerListener = new FSPlayerListener(this);
 		pm.registerEvent(Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
 		
     	System.out.print("FS PL Enabled");

@@ -6,13 +6,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.*;
 
 // from memory, this class was pulled from an old source tree of Essentials. maybe.
-public class PlayerListener extends PlayerListener
+public class FSPlayerListener extends PlayerListener
 {
 	private static final Logger logger = Logger.getLogger("Minecraft");
 	private final Server server;
-	private final Plugin parent;
+	private final FSPlugin parent;
 
-	public PlayerListener(Plugin parent)
+	public FSPlayerListener(FSPlugin parent)
 	{
 		this.parent = parent;
 		this.server = parent.getServer();
