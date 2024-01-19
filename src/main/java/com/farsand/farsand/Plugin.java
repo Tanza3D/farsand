@@ -19,7 +19,7 @@ public class Plugin extends JavaPlugin {
     public void onEnable() {
     	PluginManager pm = getServer().getPluginManager();
 
-    	EssentialsPlayerListener playerListener = new EssentialsPlayerListener(this);
+    	PlayerListener playerListener = new PlayerListener(this);
 		pm.registerEvent(Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
 		
     	System.out.print("FS PL Enabled");
