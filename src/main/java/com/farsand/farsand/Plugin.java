@@ -1,4 +1,4 @@
-package uk.co.hubza.farsand;
+package com.farsand.farsand;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

@@ -1,4 +1,4 @@
-package uk.co.hubza.farsand;
+package com.farsand.farsand;
 
 import java.util.logging.Logger;
 import org.bukkit.*;
@@ -10,9 +10,9 @@ public class EssentialsPlayerListener extends PlayerListener
 {
 	private static final Logger logger = Logger.getLogger("Minecraft");
 	private final Server server;
-	private final SamplePlugin parent;
+	private final Plugin parent;
 
-	public EssentialsPlayerListener(SamplePlugin parent)
+	public EssentialsPlayerListener(Plugin parent)
 	{
 		this.parent = parent;
 		this.server = parent.getServer();
