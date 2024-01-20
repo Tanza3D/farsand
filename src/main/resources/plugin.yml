@@ -1,0 +1,8 @@
+name: FARSAND
+main: com.farsand.farsand.FSPlugin
+version: 1.0
+
+commands:
+  test:
+    description: About.
+    usage: /about-farsand
