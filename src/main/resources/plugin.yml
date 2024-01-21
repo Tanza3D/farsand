@@ -3,6 +3,9 @@ main: com.farsand.farsand.FSPlugin
 version: 1.0
 
 commands:
-  test:
+  about:
     description: About.
-    usage: /about-farsand
+    usage: /about
+  cleanup:
+    description: Cleanup.
+    usage: /cleanup

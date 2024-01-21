@@ -1,7 +1,7 @@
 package com.farsand.farsand;
 
-import org.bukkit.World;
-
 public class Global {
     public static org.bukkit.World World;
+    public static org.bukkit.Server Server;
+    public static org.bukkit.plugin.Plugin Plugin;
 }
