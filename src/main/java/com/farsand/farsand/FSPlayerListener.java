@@ -3,6 +3,7 @@ package com.farsand.farsand;
 import java.util.logging.Logger;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.*;
 
 // from memory, this class was pulled from an old source tree of Essentials. maybe.

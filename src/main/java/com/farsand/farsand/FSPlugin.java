@@ -23,11 +23,14 @@ public class FSPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
+        Global.World = this.getServer().getWorlds().get(0);
     	PluginManager pm = getServer().getPluginManager();
 
     	FSPlayerListener playerListener = new FSPlayerListener(this);
-		pm.registerEvent(Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
+        pm.registerEvent(Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
+
+        FSBlockListener blockListener = new FSBlockListener();
+        pm.registerEvent(Type.BLOCK_PLACED, blockListener, Priority.Highest, this);
 
         FSBoatRespawner boatChecker = new FSBoatRespawner(this);
         boatChecker.BoatLoop();

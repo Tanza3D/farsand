@@ -29,11 +29,10 @@ public class FSBoatRespawner {
     };
     void SpawnBoats() {
         this.server.broadcastMessage("Respawning boats");
-        World world = this.server.getWorlds().get(0);
         for(Vector3 spawnpoint : BoatSpawns) {
             Vector3 realSpawnPoint = spawnpoint;
             realSpawnPoint.z += 0.5;
-            world.spawnBoat(spawnpoint.toLocation(world));
+            Global.World.spawnBoat(spawnpoint.toLocation(Global.World));
         }
     }
     public void BoatLoop() {
@@ -43,17 +42,13 @@ public class FSBoatRespawner {
             public void run() {
                 int inSpawn = 0;
                 int inDock = 0;
-                for (World world : parent.getServer().getWorlds()) {
-                    List<Entity> entities = world.getEntities();
-                    for (Entity entity : entities) {
-                        if (!(entity instanceof Boat)) continue;
-                        if(SpawnArea.isInside(new Vector3(entity.getLocation()))) {
-                            inSpawn++;
-                            if(DockArea.isInside(new Vector3(entity.getLocation()))) {
-                                inDock++;
-                            }
-                        }
-                    }
+
+                List<Entity> entities = Global.World.getEntities();
+                for (Entity entity : entities) {
+                    if (!(entity instanceof Boat)) continue;
+                    if (!SpawnArea.isInside(new Vector3(entity.getLocation()))) continue;
+                    inSpawn++;
+                    if (DockArea.isInside(new Vector3(entity.getLocation()))) inDock++;
                 }
 
                 //getServer().broadcastMessage("There are " + inSpawn + " boats in spawn, and " + inDock + " boats at the dock.");
