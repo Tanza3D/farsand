@@ -23,4 +23,6 @@ public class FSPlayerListener extends PlayerListener {
         Player user = event.getPlayer();
         //user.sendMessage("Welcome to FARSAND " + parent.ver + ", run /about for more info.");
     }
+
+
 }
