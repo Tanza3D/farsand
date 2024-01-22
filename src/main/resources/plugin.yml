@@ -10,3 +10,6 @@ commands:
   cleanup:
     description: Cleanup.
     usage: /cleanup
+  report:
+    description: Report an issue.
+    usage: /report

@@ -9,9 +9,29 @@
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
               <configuration>
-                  <source>1.7</source>
-                  <target>1.7</target>
+                  <source>8</source>
+                  <target>8</target>
               </configuration>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-shade-plugin</artifactId>
+              <version>3.4.0</version> <!-- Use the latest version available -->
+              <executions>
+                  <execution>
+                      <phase>package</phase>
+                      <goals>
+                          <goal>shade</goal>
+                      </goals>
+                      <configuration>
+                          <transformers>
+                              <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                  <mainClass>com.farsand.farsand.FSPlugin</mainClass>
+                              </transformer>
+                          </transformers>
+                      </configuration>
+                  </execution>
+              </executions>
           </plugin>
       </plugins>
    </build>
@@ -23,6 +43,29 @@
            	<type>jar</type>
            	<scope>system</scope>
     		<systemPath>${project.basedir}/lib/cb440.jar</systemPath>
+       </dependency>
+       <dependency>
+           <groupId>net.sf</groupId>
+           <artifactId>cglib</artifactId>
+           <version>2.2.3</version><!--change this value depending on the version or use LATEST-->
+           <type>jar</type>
+           <scope>system</scope>
+           <systemPath>${project.basedir}/lib/cglib-nodep-2.2.3.jar</systemPath>
+       </dependency>
+       <dependency>
+           <groupId>org.yaml</groupId>
+           <artifactId>snakeyaml</artifactId>
+           <version>2.0</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.commons</groupId>
+           <artifactId>commons-lang3</artifactId>
+           <version>3.1</version>
+       </dependency>
+       <dependency>
+           <groupId>com.google.guava</groupId>
+           <artifactId>guava</artifactId>
+           <version>10.0.1</version>
        </dependency>
    </dependencies>
 </project>

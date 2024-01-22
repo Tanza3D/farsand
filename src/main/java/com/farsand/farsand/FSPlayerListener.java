@@ -2,6 +2,7 @@ package com.farsand.farsand;
 
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerListener;
 
@@ -21,8 +22,5 @@ public class FSPlayerListener extends PlayerListener {
     @Override
     public void onPlayerJoin(PlayerEvent event) {
         Player user = event.getPlayer();
-        //user.sendMessage("Welcome to FARSAND " + parent.ver + ", run /about for more info.");
     }
-
-
 }
