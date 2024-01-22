@@ -1,12 +1,10 @@
 package com.farsand.farsand;
 
-import com.farsand.farsand.commands.Cleanup;
-import com.farsand.farsand.commands.Info;
-import com.farsand.farsand.commands.Report;
-import com.farsand.farsand.commands.SpawnBoats;
+import com.farsand.farsand.commands.*;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event.Type;
 import org.bukkit.plugin.PluginManager;
@@ -36,6 +34,8 @@ public class FSPlugin extends JavaPlugin {
         Global.Commands.put("report", new Report());
         Global.Commands.put("about", new Info());
         Global.Commands.put("spawnboats", new SpawnBoats());
+        Global.Commands.put("stackhand", new StackHand());
+        Global.Commands.put("row", new Row());
 
         FSPlayerListener playerListener = new FSPlayerListener(this);
         pm.registerEvent(Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
@@ -68,6 +68,7 @@ public class FSPlugin extends JavaPlugin {
     }
     public boolean doCommand(CommandSender sender, Command cmd, String label, String[] args) {
         String name = cmd.getName();
+        Global.Server.getLogger().info(((Player)sender).getName() + ": " + cmd.getName() + " " + String.join(" ", args));
         if (Global.Commands.containsKey(name)) {
             if (!sender.isOp() && Global.Commands.get(name).Protected()) {
                 sender.sendMessage(ChatColor.RED + "No Permission");

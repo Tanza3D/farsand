@@ -16,3 +16,9 @@ commands:
   spawnboats:
     description: Spawns boats?
     usage: /spawnboats
+  stackhand:
+    description: Stacks hands???
+    usage: /stackhand
+  row:
+    description: row
+    usage: /row
