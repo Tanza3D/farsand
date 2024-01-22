@@ -22,3 +22,6 @@ commands:
   row:
     description: row
     usage: /row
+  hat:
+    description: puts item in hand on head
+    usage: /hat

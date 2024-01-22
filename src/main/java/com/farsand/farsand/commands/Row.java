@@ -242,10 +242,10 @@ public class Row extends FSCommand {
         }
 
         for(int x = 0; x < 9; x++) {
-            int itemIndex = x + 9 * row;
+            int itemIndex = x + (9 * row);
             FSBlock block = selected.materials[x];
             if(block.material == Material.AIR) {
-                player.getInventory().remove(itemIndex);
+                player.getInventory().clear(itemIndex);
                 continue;
             }
             ItemStack itemStack = new ItemStack(block.material, block.amount, (short)block.data);

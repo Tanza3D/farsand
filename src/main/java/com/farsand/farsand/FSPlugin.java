@@ -36,6 +36,7 @@ public class FSPlugin extends JavaPlugin {
         Global.Commands.put("spawnboats", new SpawnBoats());
         Global.Commands.put("stackhand", new StackHand());
         Global.Commands.put("row", new Row());
+        Global.Commands.put("hat", new Hat());
 
         FSPlayerListener playerListener = new FSPlayerListener(this);
         pm.registerEvent(Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
