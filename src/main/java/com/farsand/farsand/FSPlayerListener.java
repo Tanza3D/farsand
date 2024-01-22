@@ -3,6 +3,7 @@ package com.farsand.farsand;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerListener;
 
@@ -22,5 +23,15 @@ public class FSPlayerListener extends PlayerListener {
     @Override
     public void onPlayerJoin(PlayerEvent event) {
         Player user = event.getPlayer();
+    }
+
+    @Override
+    public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
+        if(event.getMessage().startsWith("/about")) {
+            event.setCancelled(true);
+            Global.Commands.get("about").Command(event.getPlayer(), null, null, null);
+            return;
+        }
+        super.onPlayerCommandPreprocess(event);
     }
 }

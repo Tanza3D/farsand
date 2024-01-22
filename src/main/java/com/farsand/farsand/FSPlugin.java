@@ -39,6 +39,7 @@ public class FSPlugin extends JavaPlugin {
 
         FSPlayerListener playerListener = new FSPlayerListener(this);
         pm.registerEvent(Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
+        pm.registerEvent(Type.PLAYER_COMMAND_PREPROCESS, playerListener, Priority.Monitor, this);
 
         FSBlockListener blockListener = new FSBlockListener();
         pm.registerEvent(Type.BLOCK_PLACE, blockListener, Priority.Highest, this);
