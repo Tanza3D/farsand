@@ -13,3 +13,6 @@ commands:
   report:
     description: Report an issue.
     usage: /report
+  spawnboats:
+    description: Spawns boats?
+    usage: /spawnboats

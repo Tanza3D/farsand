@@ -3,18 +3,15 @@ package com.farsand.farsand;
 import com.farsand.farsand.commands.Cleanup;
 import com.farsand.farsand.commands.Info;
 import com.farsand.farsand.commands.Report;
+import com.farsand.farsand.commands.SpawnBoats;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event.Type;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-import java.util.Dictionary;
-import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.logging.Logger;
 
 
@@ -23,9 +20,6 @@ public class FSPlugin extends JavaPlugin {
     public void onDisable() {
         System.out.print("FS PL Disabled");
     }
-
-    Hashtable<String, FSCommand> commands = new Hashtable<>();
-
 
 
     @Override
@@ -37,6 +31,11 @@ public class FSPlugin extends JavaPlugin {
 
         Config.loadConfig();
 
+        Global.Commands.put("cleanup", new Cleanup());
+        Global.Commands.put("report", new Report());
+        Global.Commands.put("about", new Info());
+        Global.Commands.put("spawnboats", new SpawnBoats());
+
         FSPlayerListener playerListener = new FSPlayerListener(this);
         pm.registerEvent(Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
 
@@ -45,10 +44,6 @@ public class FSPlugin extends JavaPlugin {
 
         FSBoatRespawner boatChecker = new FSBoatRespawner(this);
         boatChecker.BoatLoop();
-
-        commands.put("cleanup", new Cleanup());
-        commands.put("report", new Report());
-        commands.put("abt", new Info());
 
         System.out.print("FS PL Enabled");
     }
@@ -71,11 +66,11 @@ public class FSPlugin extends JavaPlugin {
     }
     public boolean doCommand(CommandSender sender, Command cmd, String label, String[] args) {
         String name = cmd.getName();
-        if (commands.containsKey(name)) {
-            return commands.get(name).Command(sender, cmd, label, args);
+        if (Global.Commands.containsKey(name)) {
+            return Global.Commands.get(name).Command(sender, cmd, label, args);
         } else {
             sender.sendMessage("Could not find command " + name + "?");
-            sender.sendMessage(commands + "?");
+            sender.sendMessage(Global.Commands + "?");
         }
         return false;
     }

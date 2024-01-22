@@ -3,6 +3,7 @@ package com.farsand.farsand;
 import org.bukkit.Server;
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
@@ -19,36 +20,31 @@ public class FSBoatRespawner {
     Box SpawnArea = new Box(new Vector3(33, 128, 25), new Vector3(-87, 0, 122));
     Box DockArea = new Box(new Vector3(-20, 128, 88), new Vector3(21, 0, 57));
 
-    Vector3[] BoatSpawns = {
-            new Vector3(-4, 65, 76),
-            new Vector3(-4, 65, 78),
-            new Vector3(2, 65, 76),
-            new Vector3(2, 65, 78),
-            new Vector3(10, 65, 76),
-            new Vector3(10, 65, 78),
-    };
-
-    void SpawnBoats() {
-        this.server.broadcastMessage("Respawning boats");
-        for (Vector3 spawnpoint : BoatSpawns) {
-            Vector3 realSpawnPoint = spawnpoint;
-            realSpawnPoint.z += 0.5;
-            Global.World.spawnBoat(spawnpoint.toLocation(Global.World));
-        }
-    }
 
     public void BoatLoop() {
-        int sec = 30;
+        int sec = 60;
         this.server.getScheduler().scheduleSyncRepeatingTask((Plugin) this.parent, new Runnable() {
+            int players = 0;
+            int inSpawn = 0;
+            int inDock = 0;
+
             @Override
             public void run() {
-                int inSpawn = 0;
-                int inDock = 0;
+                players = 0;
+                inSpawn = 0;
+                inDock = 0;
 
                 List<Entity> entities = Global.World.getEntities();
                 for (Entity entity : entities) {
+                    if(entity instanceof Player) {
+                        if(SpawnArea.isInside(new Vector3(entity.getLocation()))) players++;
+                    }
                     if (!(entity instanceof Boat)) continue;
                     if (!SpawnArea.isInside(new Vector3(entity.getLocation()))) continue;
+                    if (players == 0) {
+                        entity.remove();
+                        continue;
+                    }
                     inSpawn++;
                     if (DockArea.isInside(new Vector3(entity.getLocation()))) inDock++;
                 }
@@ -57,7 +53,7 @@ public class FSBoatRespawner {
                 // checked boats.
                 if (inDock == 0 && inSpawn < 2) {
                     // TODO: respawn boats
-                    SpawnBoats();
+                    Global.Commands.get("spawnboats").Command(null, null, null, null);
                 }
             }
         }, 20L * sec, 20L * sec);

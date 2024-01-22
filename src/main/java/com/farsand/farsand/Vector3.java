@@ -5,9 +5,11 @@ import org.bukkit.World;
 
 public class Vector3 {
 
-    double x, y, z; // package-private variables; nice encapsulation if you place this in a maths package of something
+    public double x;
+    public double y;
+    public double z; // package-private variables; nice encapsulation if you place this in a maths package of something
 
-    Vector3(double x, double y, double z) {
+    public Vector3(double x, double y, double z) {
         this.x = x;
         this.y = y;
         this.z = z;
