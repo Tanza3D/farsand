@@ -41,7 +41,7 @@ public class FSPlugin extends JavaPlugin {
         pm.registerEvent(Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
 
         FSBlockListener blockListener = new FSBlockListener();
-        pm.registerEvent(Type.BLOCK_PLACED, blockListener, Priority.Highest, this);
+        pm.registerEvent(Type.BLOCK_PLACE, blockListener, Priority.Highest, this);
 
         FSBoatRespawner boatChecker = new FSBoatRespawner(this);
         boatChecker.BoatLoop();

@@ -42,7 +42,7 @@
            	<version>1.0</version><!--change this value depending on the version or use LATEST-->
            	<type>jar</type>
            	<scope>system</scope>
-    		<systemPath>${project.basedir}/lib/cb440.jar</systemPath>
+    		<systemPath>${project.basedir}/lib/cb646.jar</systemPath>
        </dependency>
        <dependency>
            <groupId>net.sf</groupId>
