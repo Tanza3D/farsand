@@ -11,8 +11,11 @@ import java.util.List;
 
 public class Cleanup extends FSCommand {
     @Override
+    public boolean Protected() {
+        return true;
+    }
+    @Override
     public boolean Command(CommandSender sender, org.bukkit.command.Command cmd, String label, String[] args) {
-        if (!sender.isOp()) return false;
         int dropped = 0;
         int arrows = 0;
         List<Entity> entities = Global.World.getEntities();

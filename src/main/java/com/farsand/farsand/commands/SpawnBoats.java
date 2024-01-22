@@ -13,6 +13,11 @@ import org.bukkit.entity.Minecart;
 import java.util.List;
 
 public class SpawnBoats extends FSCommand {
+    @Override
+    public boolean Protected() {
+        return true;
+    }
+
     Vector3[] BoatSpawns = {
             new Vector3(-4, 65, 76),
             new Vector3(-4, 65, 78),
@@ -43,6 +48,7 @@ public class SpawnBoats extends FSCommand {
             }
         }
         for (Vector3 spawnpoint : BoatSpawns) {
+            spawnpoint.z += 0.25;
             Global.World.spawnBoat(spawnpoint.toLocation(Global.World));
         }
         return true;

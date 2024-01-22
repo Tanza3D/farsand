@@ -4,6 +4,7 @@ import com.farsand.farsand.commands.Cleanup;
 import com.farsand.farsand.commands.Info;
 import com.farsand.farsand.commands.Report;
 import com.farsand.farsand.commands.SpawnBoats;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Event.Priority;
@@ -67,10 +68,13 @@ public class FSPlugin extends JavaPlugin {
     public boolean doCommand(CommandSender sender, Command cmd, String label, String[] args) {
         String name = cmd.getName();
         if (Global.Commands.containsKey(name)) {
+            if (!sender.isOp() && Global.Commands.get(name).Protected()) {
+                sender.sendMessage(ChatColor.RED + "No Permission");
+                return false;
+            }
             return Global.Commands.get(name).Command(sender, cmd, label, args);
         } else {
-            sender.sendMessage("Could not find command " + name + "?");
-            sender.sendMessage(Global.Commands + "?");
+            sender.sendMessage(ChatColor.RED + "Could not find command " + name + "?");
         }
         return false;
     }
