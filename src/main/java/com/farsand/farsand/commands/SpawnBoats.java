@@ -43,7 +43,6 @@ public class SpawnBoats extends FSCommand {
             }
         }
         for (Vector3 spawnpoint : BoatSpawns) {
-            spawnpoint.z -= 0.5;
             Global.World.spawnBoat(spawnpoint.toLocation(Global.World));
         }
         return true;
