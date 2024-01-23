@@ -225,7 +225,6 @@ public class Row extends FSCommand {
             return true;
         }
 
-        // 0 = hotbar, 3 = top row, you can guess the rest
         int row = 0;
         if(args.length == 2) {
             row = Integer.parseInt(args[1]);
